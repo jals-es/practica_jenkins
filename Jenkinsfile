@@ -4,14 +4,14 @@ pipeline {
     stage('linter') {
       steps {
         sh '''npm install
-npm run lint'''
+npm run lint
+npm start &'''
       }
     }
 
     stage('test') {
       steps {
-        sh '''npm start &
-npx cypress run'''
+        sh 'npx cypress run'
       }
     }
 
