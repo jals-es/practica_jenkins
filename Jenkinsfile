@@ -8,6 +8,12 @@ npm run lint'''
       }
     }
 
+    stage('test') {
+      steps {
+        sh 'npm run test'
+      }
+    }
+
   }
   environment {
     ejecutor = 'Juan Antonio'
