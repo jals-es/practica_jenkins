@@ -10,7 +10,7 @@ npm run lint'''
 
     stage('test') {
       steps {
-        sh 'npm run cypress'
+        sh 'npx cypress run'
       }
     }
 
