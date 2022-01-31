@@ -29,11 +29,11 @@ sleep 10'''
     stage('pushChanges') {
       steps {
         sh 'git add --all'
+        sh '''git config --global user.email "juan.antonio.lis@gmail.com"
+git config --global user.name "Juan Antonio"'''
         sh 'git commit -m "commit changes"'
         sh 'git push'
         sh 'echo "Pipeline ejecutada por $ejecutor. Motivo: $motivo"'
-        sh '''git config --global user.email "juan.antonio.lis@gmail.com"
-git config --global user.name "Juan Antonio"'''
       }
     }
 
