@@ -12,7 +12,7 @@ npm run lint'''
     stage('test') {
       steps {
         sh '''npm start &
-cypress run'''
+npm run cypress'''
       }
     }
 
