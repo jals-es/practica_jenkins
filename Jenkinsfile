@@ -12,7 +12,6 @@ npm run lint'''
     stage('test') {
       steps {
         sh '''npm start &
-sleep 5
 npm run cypress'''
       }
     }
