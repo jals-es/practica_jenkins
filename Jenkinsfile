@@ -26,6 +26,15 @@ sleep 10'''
       }
     }
 
+    stage('pushChanges') {
+      steps {
+        sh '''git add *
+git commit -m "commit changes"
+git push
+echo "Pipeline ejecutada por $ejecutor. Motivo: $motivo"'''
+      }
+    }
+
   }
   environment {
     ejecutor = 'Juan Antonio'
