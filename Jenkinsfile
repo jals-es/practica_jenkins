@@ -28,10 +28,10 @@ sleep 10'''
 
     stage('pushChanges') {
       steps {
-        sh '''git add *
-git commit -m "commit changes"
-git push
-echo "Pipeline ejecutada por $ejecutor. Motivo: $motivo"'''
+        sh 'git add --all'
+        sh 'git commit -m "commit changes"'
+        sh 'git push'
+        sh 'echo "Pipeline ejecutada por $ejecutor. Motivo: $motivo"'
       }
     }
 
