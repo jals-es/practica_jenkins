@@ -15,12 +15,6 @@ npm run lint'''
       }
     }
 
-    stage('updateReadme') {
-      steps{
-        sh '''node ./jenkinsScripts/update_readme.js $TEST'''
-      }
-    }
-
   }
   environment {
     ejecutor = 'Juan Antonio'
