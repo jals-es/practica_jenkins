@@ -11,7 +11,8 @@ npm run lint'''
 
     stage('test') {
       steps {
-        env.TEST = sh(script: "./node_modules/.bin/cypress run ",returnStatus:true)
+        sh '''npm start &
+npm run cypress'''
       }
     }
 
