@@ -30,10 +30,10 @@ sleep 10'''
       steps {
         sh 'git add --all'
         sh '''git config --global user.email "juan.antonio.lis@gmail.com"
-git config --global user.name "Juan Antonio"'''
-        sh 'git commit -m "commit changes"'
+git config --global user.name "Juan Antonio"
+git remote set-url origin "https://jals-es:"$ghtoken"@github.com/jals-es/practica_jenkins.git"'''
+        sh 'git commit -m "Pipeline ejecutada por $ejecutor. Motivo: $motivo"'
         sh 'git push --set-upstream origin master'
-        sh 'echo "Pipeline ejecutada por $ejecutor. Motivo: $motivo"'
       }
     }
 
@@ -42,5 +42,6 @@ git config --global user.name "Juan Antonio"'''
     ejecutor = 'Juan Antonio'
     motivo = 'Porque me obliga pepe'
     correo = 'narzano.nar@gmail.com'
+    ghtoken = 'credentials(\'ghtoken\')'
   }
 }
