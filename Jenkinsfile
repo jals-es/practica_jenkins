@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  triggers {
-    pollSCM 'H/3 * * * *'
-  }
   stages {
     stage('linter') {
       steps {
