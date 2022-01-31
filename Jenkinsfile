@@ -32,7 +32,7 @@ sleep 10'''
         sh '''git config --global user.email "juan.antonio.lis@gmail.com"
 git config --global user.name "Juan Antonio"'''
         sh 'git commit -m "commit changes"'
-        sh 'git push'
+        sh 'git push --set-upstream origin master'
         sh 'echo "Pipeline ejecutada por $ejecutor. Motivo: $motivo"'
       }
     }
