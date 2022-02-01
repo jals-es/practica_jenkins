@@ -46,7 +46,7 @@ git remote set-url origin "https://jals-es:"$ghtoken"@github.com/jals-es/practic
     stage('Vercel') {
       steps {
         sh '''
-if [ $LINT -eq 0 ] && [ $TEST -eq 0 ] && [ $UPDATEREADME -eq 0 ] && [ $PUSHCHANGES -eq 0 ] then
+if [ $LINT -eq 0 ] && [ $TEST -eq 0 ] && [ $UPDATEREADME -eq 0 ] && [ $PUSHCHANGES -eq 0 ]
 then
 vercel . --token $VERCELTOKEN --confirm --name practica-jenkins
 echo $?
