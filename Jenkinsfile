@@ -36,6 +36,7 @@ npm run build'''
 git config --global user.name "Juan Antonio"
 git remote set-url origin "https://jals-es:"$ghtoken"@github.com/jals-es/practica_jenkins.git"'''
         sh 'git commit -m "Pipeline ejecutada por $ejecutor. Motivo: $motivo"'
+        sh 'git pull'
         sh 'git push --set-upstream origin master'
         script {
           env.PUSHCHANGES = 0
