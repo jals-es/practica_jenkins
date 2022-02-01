@@ -98,8 +98,26 @@ En esta stage recogemos todas las variables de entorno de los anteriores stages 
 
 <a name="mailnotify"></a>
 ## Stage Mail Notification
-adada
+En esta stage informamos por correo del resultado de las stages, para ello usamos la libreria nodemailer y configuramos el smtp para el envio del correo. Como tenemos los datos de smtp en credenciales de jenkins, cogemos las variables de entorno que contienen dichas credenciales.<br>
+En el cuerpo del correo cogemos tambien las variables de entorno que contienen los resultados de las anteriores stages.<br>
+En la ultima captura vemos como se ha enviado el correo.
+
+![script send email](https://user-images.githubusercontent.com/31510870/151908219-8e796002-333d-4ca6-93cc-34926584d4ed.png)
+![resultado correo](https://user-images.githubusercontent.com/31510870/151908238-7f21df93-d9e2-48cf-ab3d-3ef4872a2311.png)
 
 <a name="telegramnotify"></a>
 ## Stage Telegram Notification
-adada
+En paralelo a la anterior stage ejecutamos otra stage en la que enviamos una confirmación por un bot de telegram de que la stage se ha ejecutado correctamente saludando al ejecutor de la pipeline.<br>
+En la captura se puede ver el mensaje de telegram.
+
+![script send telegram](https://user-images.githubusercontent.com/31510870/151908260-1741bded-fae7-49a8-a78f-fcee7353d4e7.png)
+![resultado telegram](https://user-images.githubusercontent.com/31510870/151908270-e034a770-224d-401f-9350-d0fe936a88b8.png)
+
+## Stages anteriores en paralelo y resultado
+Aqui podemos ver como se ejecutan las dos stages en paralelo y el resultado de toda la pipeline ejecutada correctamente en el dashboard de Blue Oceans que hemos instalado y configurado para poder gestionar la pipeline con mayor facilidad.
+
+![stage parallel mail telegram](https://user-images.githubusercontent.com/31510870/151908388-8782c0d3-e58c-49b9-bc30-12d169608ed2.png)
+![resultado todo ok](https://user-images.githubusercontent.com/31510870/151908401-8b914b95-09dd-4cf2-8b52-b1ca4476d754.png)
+
+
+<u>Autor: Juan Antonio López Seguí</u>
