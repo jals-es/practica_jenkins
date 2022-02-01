@@ -15,7 +15,7 @@ transporter.verify((error, success) => {
 });
 transporter.sendMail({
     from: process.env.EMAIL_USER,
-    to: process.env.email,
+    to: process.env.correo,
     subject: process.env.motivo,
     html: `
     <div>
