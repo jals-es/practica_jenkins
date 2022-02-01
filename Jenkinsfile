@@ -42,6 +42,6 @@ git remote set-url origin "https://jals-es:"$ghtoken"@github.com/jals-es/practic
     ejecutor = 'Juan Antonio'
     motivo = 'Porque me obliga pepe'
     correo = 'narzano.nar@gmail.com'
-    ghtoken = credentials('ghtoken')
+    ghtoken = credentials('ghtokeni')
   }
 }
