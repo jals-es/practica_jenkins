@@ -14,6 +14,7 @@ npm run lint'''
         sh '''npm start &'''
         script {
           env.TEST = sh(script: "./node_modules/.bin/cypress run ",returnStatus:true)
+          env.TEST = 1
         }
 
       }
