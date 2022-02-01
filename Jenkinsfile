@@ -4,8 +4,10 @@ pipeline {
     stage('linter') {
       steps {
         sh '''npm install
-npm run build
-npm run lint'''
+npm run build'''
+        script {
+          env.LINT = sh(script: "npm run lint",returnStatus:true)
+        }
       }
     }
 
@@ -21,7 +23,9 @@ npm run lint'''
 
     stage('updateReadme') {
       steps {
-        sh 'node ./jenkinsScripts/update_readme.js $TEST'
+        script {
+          env.UPDATEREADME = sh(script: 'node ./jenkinsScripts/update_readme.js $TEST',returnStatus:true)
+        }
       }
     }
 
@@ -33,6 +37,23 @@ git config --global user.name "Juan Antonio"
 git remote set-url origin "https://jals-es:"$ghtoken"@github.com/jals-es/practica_jenkins.git"'''
         sh 'git commit -m "Pipeline ejecutada por $ejecutor. Motivo: $motivo"'
         sh 'git push --set-upstream origin master'
+        script {
+          env.PUSHCHANGES = 0
+        }
+      }
+    }
+
+    stage('Vercel') {
+      steps {
+        sh '''
+if [ $LINT -eq 0 ] && [ $TEST -eq 0 ] && [ $UPDATEREADME -eq 0 ] && [ $PUSHCHANGES -eq 0 ] then
+then
+vercel . --token $VERCELTOKEN --confirm --name practica-jenkins
+echo $?
+else
+exit 1
+fi
+        '''
       }
     }
 
@@ -42,5 +63,6 @@ git remote set-url origin "https://jals-es:"$ghtoken"@github.com/jals-es/practic
     motivo = 'Porque me obliga pepe'
     correo = 'narzano.nar@gmail.com'
     ghtoken = credentials('ghtokeni')
+    VERCELTOKEN = credentials('VERCELTOKEN')
   }
 }
