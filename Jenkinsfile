@@ -66,11 +66,15 @@ fi
     stage('Parallel Stage') {
       parallel {
         stage('Mail Notification') {
-          sh '''node ./jenkinsScripts/send_email.js'''
+          steps {
+            sh '''node ./jenkinsScripts/send_email.js'''
+          }
         }
 
         stage('Custom stage Telegram Notification') {
-          sh '''node ./jenkinsScripts/send_telegram.js'''
+          steps {
+            sh '''node ./jenkinsScripts/send_telegram.js'''
+          }
         }
       }
     }
