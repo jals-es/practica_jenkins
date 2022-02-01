@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  triggers { 
+    pollSCM('0 */3 * * *') 
+  }
   stages {
     stage('linter') {
       steps {
@@ -55,6 +58,20 @@ else
 exit 1
 fi
         '''
+        script {
+          env.VERCEL = 0
+        }
+      }
+    }
+    stage('Parallel Stage') {
+      parallel {
+        stage('Mail Notification') {
+          sh '''node ./jenkinsScripts/send_email.js'''
+        }
+
+        stage('Custom stage Telegram Notification') {
+          sh '''node ./jenkinsScripts/send_telegram.js'''
+        }
       }
     }
 
@@ -64,6 +81,12 @@ fi
     motivo = 'Porque me obliga pepe'
     correo = 'narzano.nar@gmail.com'
     ghtoken = credentials('ghtokeni')
-    VERCELTOKEN = credentials('VERCELTOKEN')
+    VERCELTOKEN = credentials('VERCELTOKEN'),
+    EMAIL_HOST = credentials('EMAIL_HOST'),
+    EMAIL_POST = credentials('EMAIL_POST'),
+    EMAIL_USER = credentials('EMAIL_USER'),
+    EMAIL_PASS = credentials('EMAIL_PASS'),
+    TELEGRAM_BOT_TOKEN = credentials('TELEGRAM_BOT_TOKEN'),
+    MY_TELEGRAM_ID = credentials('MY_TELEGRAM_ID')
   }
 }
